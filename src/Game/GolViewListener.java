@@ -4,4 +4,7 @@ package Game;
 	
 		void handleGolViewEvent();
 		void resize(int size);
+		void appearModel();
+		void changeState(boolean[][] temp);
+		void clearBoard();
 }

@@ -116,11 +116,39 @@ public class GolController implements GolViewListener, GolObserver{
 	}
 	
 	public void resize(int size) {
+		
 		this.model.removeObserver(this);
 		
 		GolModel newModel = new GolModel(size, size, view);
 		model = newModel;
 		this.model.addObserver(this);
+		model.setNewState(model.getCurrentState());
 	}
+	
+	public void appearModel() {
+		
+		boolean [][] randomState = new boolean[view.getGridSize()][view.getGridSize()];
+		for (int r = 0; r < randomState.length; r++) {
+            for (int c = 0; c < randomState[0].length; c++) {
+                randomState[r][c] = (Math.random() < 0.45);  // 45% probability that the cell is alive.
+            }
+		}
+		update(model, randomState);
+	}
+	
+	public void changeState(boolean[][] change) {
+		model.setState(change);
+	}
+	
+	public void clearBoard() {
+		boolean [][] emptyState = new boolean[view.getGridSize()][view.getGridSize()];
+		for (int r = 0; r < emptyState.length; r++) {
+            for (int c = 0; c < emptyState[0].length; c++) {
+                emptyState[r][c] = false;  
+            }
+		}
+		update(model, emptyState);
+	}
+	
 
 }

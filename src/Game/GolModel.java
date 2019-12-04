@@ -21,7 +21,7 @@ public class GolModel {
                 currentState[r][c] = (Math.random() < 0.45);  // 25% probability that the cell is alive.
             }
 		}
-		view.setDisplay(currentState);
+		
 	}
 	
 	public boolean[][] getCurrentState() {
@@ -54,6 +54,16 @@ public class GolModel {
 		return currentState[x][y];
 	}
 	
+	public void setNewState(boolean[][] temp) {
+		for (int i = 0; i < currentState.length; i++) {
+            for (int j = 0; j < currentState[0].length; j++) {
+                currentState[i][j] = temp[i][j];
+        	}
+		}
+		view.setBoard();
+		
+	}
+		
 	
 	
 	
